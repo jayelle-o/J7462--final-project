@@ -1,0 +1,34 @@
+
+
+
+
+/*div {
+	outline: 1px solid green;
+}
+
+
+svg {
+	outline: 1px solid orange;
+}*/
+
+
+.chart {
+  height: 500px;
+}
+
+.g {
+    color: ccc;
+}
+
+
+
+
+
+/* Axis styles */
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
