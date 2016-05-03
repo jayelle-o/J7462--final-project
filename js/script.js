@@ -137,14 +137,14 @@ d3.csv("data/output_20160502.csv", function(error, data) {
 
 });
 
-.on("mousemove", function(d) {
+// .on("mousemove", function(d) {
 
-    var xPos = d3.mouse(month)[0] + margin.left + 10;
-    var yPos = d3.mouse(incidents)[1] + margin.top + 10;
+//     var xPos = d3.mouse(month)[0] + margin.left + 10;
+//     var yPos = d3.mouse(incidents)[1] + margin.top + 10;
 
-    $(".tt").css({
-        "left": xPos + "px",
-        "top": yPos + "px"
-    })
-})
+//     $(".tt").css({
+//         "left": xPos + "px",
+//         "top": yPos + "px"
+//     })
+// })
 
