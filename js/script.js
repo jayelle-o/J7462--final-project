@@ -9,9 +9,9 @@
 // A great visual explanation of how this works is here: https://bl.ocks.org/mbostock/3019563
 var margin = {
         top: 20,
-        right: 20,
+        right: 120,
         bottom: 120,
-        left: 50
+        left: 20
     };
 
 // Here, we define the width and height as that of the .chart div minus the margins.
@@ -69,7 +69,7 @@ var svg = d3.select(".chart").append("svg") // Appends the <svg> tag to the .cha
 /* ---------------------- */
 
 // This is an ajax call. Same as when we load a json file.
-d3.csv("data/masterspills_working_time+count.csv", function(error, data) {
+d3.csv("data/output_20160502.csv", function(error, data) {
     if (error) throw error;
 
 
@@ -101,21 +101,21 @@ d3.csv("data/masterspills_working_time+count.csv", function(error, data) {
         .call(xAxis) // This calls the axis function, which builds the axis inside the <g> tag.
         .selectAll("text")
         .attr("y", 20)
-        .attr("x", 30)
+        .attr("dx", 0)
         .attr("dy", ".35em")
-        .attr("transform", "rotate(0)")
+        .attr("transform", "rotate(-45)")
         .style("text-anchor", "end");
         //.text("xxxxx")
 
     // Same as above, but for the y axis.
     svg.append("g")
         .attr("class", "y axis")
-        //.attr("transform", "translate((width - margin.right), 0)")
+        .attr("transform", "translate(" + width + ", 0)")
         .call(yAxis)
         .append("text")
         .attr("class", "label")
         .attr("transform", "rotate(-90)")
-        .attr("y", 6)
+        .attr("y", -16)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
         .text("oilfield incidents");
@@ -137,5 +137,14 @@ d3.csv("data/masterspills_working_time+count.csv", function(error, data) {
 
 });
 
+.on("mousemove", function(d) {
 
+    var xPos = d3.mouse(month)[0] + margin.left + 10;
+    var yPos = d3.mouse(incidents)[1] + margin.top + 10;
+
+    $(".tt").css({
+        "left": xPos + "px",
+        "top": yPos + "px"
+    })
+})
 
