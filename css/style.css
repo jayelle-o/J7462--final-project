@@ -8,11 +8,20 @@ div {
 
 
 svg {
-	outline: 1px solid orange;
+	outline: 3px solid orange;
 }
 
 .chart {
   height: 500px;
+  position: relative;
+}
+
+.tt {
+    background-color: #fff;
+    padding: 8 px;
+    outline: 1px solide #ccc;
+    display: none;
+    position: aboslute;
 }
 
 .g {

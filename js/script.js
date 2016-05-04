@@ -133,18 +133,41 @@ d3.csv("data/output_20160502.csv", function(error, data) {
     })
     .attr("height", function(d) { 
         return height - y(d.incidents); 
-    });
+    })
 
+    .on("mouseover", function(d) {
+
+        var num = d.incidents;
+        var date = d.month;
+
+        $(".tt").html(
+            "<div class='month'>"+num+"</div>"+
+            "<div class='incidents'>"+date+"</div>"
+        )
+
+        $(".tt").show();
+
+        d3.select(this).attr("fill", "orange");
+
+    })
+    
+    .on("mousemove", function(d) {
+        
+        var xPos = d3.mouse(this)[0] + margin.left + 10;
+        var yPos = d3.mouse(this[1] + margin.top + 10);
+
+        $(".tt").css({
+            "left" : xPos + "px",
+            "top" : yPos + "px"
+        })
+    })
+    
+    .on("mouseout", function(d){
+        d3.select(this).style("fill", "black");
+        $(".tt").hide();
+    })
+    
 });
 
-// .on("mousemove", function(d) {
 
-//     var xPos = d3.mouse(month)[0] + margin.left + 10;
-//     var yPos = d3.mouse(incidents)[1] + margin.top + 10;
-
-//     $(".tt").css({
-//         "left": xPos + "px",
-//         "top": yPos + "px"
-//     })
-// })
 
