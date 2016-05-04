@@ -72,8 +72,6 @@ var svg = d3.select(".chart").append("svg") // Appends the <svg> tag to the .cha
 d3.csv("data/output_20160502.csv", function(error, data) {
     if (error) throw error;
 
-
-
     // Get the month values from the data.
     var monthDomain = data.map(function(d) { return d.month; })
 
@@ -81,7 +79,6 @@ d3.csv("data/output_20160502.csv", function(error, data) {
 	var incidents = d3.extent(data, function(d) {
         return +d.incidents;
     });
-
 
     // `minMaxParticipation` is an ARRAY OF TWO VALUES.
     // We'll assign it to the "domain" of the `x` scale. 
