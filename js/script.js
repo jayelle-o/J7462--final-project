@@ -22,9 +22,10 @@ var height = $(".chart").height() - margin.top - margin.bottom;
 //parse the date
 var parseDate = d3.time.format("%Y-%m").parse;
 
+
 // `x` and `y` are scale function. We'll use this to translate values from the data into pixels.
 var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1); //Range is an array of two *pixel* values.
+    .rangeBands([0, width], .1); //Range is an array of two *pixel* values.
 
 var y = d3.scale.linear()
     .range([height, 0]);
@@ -41,8 +42,9 @@ var xAxis = d3.svg.axis()
         var month = d.split("-")[1];
         var year = d.split("-")[0];
 
+
         console.log(month);
-        if (month == "01") {
+        if (month == "01" & year %2 === 1) {
             return year;
         }
     });
@@ -80,9 +82,6 @@ d3.csv("data/output_20160502.csv", function(error, data) {
         return +d.incidents;
     });
 
-    // `minMaxParticipation` is an ARRAY OF TWO VALUES.
-    // We'll assign it to the "domain" of the `x` scale. 
-    // x.domain(minMaxParticipation).nice();
  	x.domain(monthDomain);
            
     // // Same for the `x` scale.
@@ -98,9 +97,9 @@ d3.csv("data/output_20160502.csv", function(error, data) {
         .call(xAxis) // This calls the axis function, which builds the axis inside the <g> tag.
         .selectAll("text")
         .attr("y", 20)
-        .attr("dx", 0)
+        .attr("dx", 29)
         .attr("dy", ".35em")
-        .attr("transform", "rotate(-45)")
+        .attr("transform", "rotate(0)")
         .style("text-anchor", "end");
         //.text("xxxxx")
 
@@ -115,7 +114,7 @@ d3.csv("data/output_20160502.csv", function(error, data) {
         .attr("y", -16)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("oilfield incidents");
+        .text("oilfield spills");
 
     svg.selectAll(".bar") //bar doesn't exist yet
     .data(data)
@@ -138,20 +137,20 @@ d3.csv("data/output_20160502.csv", function(error, data) {
         var date = d.month;
 
         $(".tt").html(
-            "<div class='month'>"+num+"</div>"+
-            "<div class='incidents'>"+date+"</div>"
+            "<div class='incidents'>"+date+"</div>"+
+            "<div class='month'>"+num+' spills'+"</div>"
         )
 
         $(".tt").show();
 
-        d3.select(this).attr("fill", "orange");
+        d3.select(this).attr("fill", "red");
 
     })
     
     .on("mousemove", function(d) {
         
-        var xPos = d3.mouse(this)[0] + margin.left + 10;
-        var yPos = d3.mouse(this[1] + margin.top + 10);
+        var xPos = d3.mouse(this)[0] - margin.left - 10;
+        var yPos = d3.mouse(this)[1] - margin.top - 30;
 
         $(".tt").css({
             "left" : xPos + "px",

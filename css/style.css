@@ -1,7 +1,7 @@
 
 
 
-
+/*
 div {
 	outline: 1px solid green;
 }
@@ -9,7 +9,7 @@ div {
 
 svg {
 	outline: 3px solid orange;
-}
+}*/
 
 .chart {
   height: 500px;
@@ -17,18 +17,22 @@ svg {
 }
 
 .tt {
-    background-color: #fff;
+    background-color: #FFFFFF;
     padding: 8 px;
-    outline: 1px solide #ccc;
+    outline: 1px solid #ccc;
     display: none;
-    position: aboslute;
+    position: absolute;
 }
 
 .g {
     color: ccc;
 }
 
-
+.blurb {
+    height: 500px;
+    position: relative;
+    font-size: 12px;
+}
 
 
 
